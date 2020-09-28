@@ -1,3 +1,3 @@
 # ZIYA-auction
-cd ZIYA-auction
-node userServer.js
+###### cd ZIYA-auction
+###### node userServer.js
