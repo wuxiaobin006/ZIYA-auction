@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css">
+    <script src="/jQuery.js"></script>
+    <script src="/bootstrap.min.js"></script>
+    <title>Document</title>
+    <style>
+            .container{
+                display:table;
+                height:100%;
+            }
+    
+            .row{
+                display: table-cell;
+                vertical-align: middle;
+            }
+            .row-centered {
+                text-align:center;
+            }
+            .col-centered {
+                display:inline-block;
+                float:none;
+                text-align:left;
+                margin-right:-4px;
+            }
+            body{
+                padding: 200px;
+                background:url(/images/background.jpg) no-repeat;
+                background-size:cover;
+            }
+        </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row row-centered">
+            <div class="well col-md-6 col-centered">
+                <h2 id="title"></h2>
+                <div class="input-group input-group-md">
+                    <span class="input-group-addon" id="sizing-addon1">商品名字</span>
+                    <input type="text" class="form-control" id="sName" name="userid" placeholder="请输入商品名字"/>
+                </div>
+                <div class="input-group input-group-md">
+                    <span class="input-group-addon" id="sizing-addon2">起拍价格</span>
+                    <input type="text" class="form-control" id="sPrice" placeholder="请输入起拍价格"/>
+                </div>
+                <div class="input-group input-group-md">
+                        <span class="input-group-addon" id="sizing-addon2">商品图片</span>
+                        <input type="file" id="sImg" style="display: none;">
+                        <input type="text" class="form-control" id="show" placeholder="请选择图片" style="outline: none;cursor: pointer;" readonly/>
+                    </div>
+                <br/>
+                <button onclick="addS()" type="submit" class="btn btn-success btn-block">添加</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        var value = window.location.href.split("=")[1];
+        console.log(decodeURI(value));
+        var title = document.getElementById("title");
+        title.innerText=decodeURI(value);
+        var sName = document.getElementById("sName");
+        var sPrice = document.getElementById("sPrice");
+        var sImg = document.getElementById("sImg");
+        var show = document.getElementById("show");
+        show.onclick = function(){
+            sImg.click();
+            console.log("test");
+        }
+        sImg.onchange = function(){
+            show.value = sImg.files[0].name;
+        }
+        function addS(){
+            var formdata = new FormData();
+            formdata.append("title",title.innerText);
+            formdata.append("sName",sName.value);
+            formdata.append("sPrice",sPrice.value);
+            formdata.append(show.value,sImg.files[0]);
+            var xhr = new XMLHttpRequest();
+            xhr.open('post','/addS');
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState==4&&xhr.status==200){
+                    if(xhr.responseText=="success"){
+                        alert("添加成功");
+                        
+                    }console.log(xhr.responseText);
+                }
+            }
+            xhr.send(formdata);
+        }
+    </script>
+</body>
+</html>

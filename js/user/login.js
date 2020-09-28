@@ -1,0 +1,31 @@
+$("#loginBtn").click(function(){
+    let id = $("#userid").val();
+    let pwd = $("#password").val();
+    if(id==""||pwd==""){
+        alert("用户名或密码不能为空哦！^-^");
+    }else{
+        $.ajax({
+            url:"/login",
+            type:"post",
+            data:{
+                userId:id,
+                password:pwd
+            },
+            success:function(data){
+                if(data=="login"){
+                    alert("登录成功！");
+                    document.cookie="username="+id;
+                    window.location.href="/index.html";
+                }else{
+                    alert("用户名或密码错误");
+                }
+            },
+            error:function(error){
+                alert("网络故障，请稍后再试。");
+            }
+        })
+    }
+})
+$("#registerBtn").click(function(){
+    window.location.href="/register.html";
+})

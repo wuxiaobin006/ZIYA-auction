@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css">
+    <script src="/jQuery.js"></script>
+    <script src="/bootstrap.min.js"></script>
+    <title>Document</title>
+    <style>
+        body{
+            background:url(/images/background.jpg) no-repeat;
+            background-size:cover;
+        }
+        .bg{
+            background-color: white;
+            border: rgb(184, 183, 183) 1px solid;
+            font-size: 15px;
+            height:30px;
+        }
+        .title{
+            font-weight: 700;
+            font-size: 23px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid" style="font-weight:bolder;">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="manager.html">返回</a>
+            </div>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="userManage.html">用户中心</a></li>
+                    <li>
+                        <a>
+                            <input type="text" id="search">
+                            <input type="button" id="searchBtn" value="搜索用户">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2 title">用户账号</div>
+            <div class="col-sm-1 title">省份</div>
+            <div class="col-sm-1 title">城市</div>
+            <div class="col-sm-4 title">地址</div>
+            <div class="col-sm-1 title">等级</div>
+        </div>
+    </div>
+</body>
+<script>
+$.ajax({
+    url:"/getAllUsers",
+    type:"post",
+    success:function(data){
+        for(var i=0;i<data.length;i++){
+            var row = $("<div class='row'></div>");
+            var id = $("<div class='col-sm-2 bg'></div>");
+            var province = $("<div class='col-sm-1 bg'></div>");
+            var city = $("<div class='col-sm-1 bg'></div>");
+            var address = $("<div class='col-sm-4 bg'></div>");
+            var level = $("<div class='col-sm-1 bg'></div>");
+            var del = $("<button class='col-sm-1 delBtn'></button>");
+            del.append("删除用户");
+            del.attr("id",data[i].userId);
+            del.click(function(){
+                var delUserId = $(this).attr("id");
+                $.ajax({
+                    url:"/delUserId",
+                    type:"post",
+                    data:{
+                        delUserId:delUserId,
+                    },
+                    success:function(data){
+                        alert("删除成功！");
+                        window.location.href="/userManage.html";
+                    },
+                    error:function(error){
+                        alert("网络故障！");
+                    }
+                })
+            });
+            id.append(data[i].userId);
+            province.append(data[i].province);
+            city.append(data[i].city);
+            address.append(data[i].address);
+            level.append(data[i].level);
+            row.append(id);
+            row.append(province);
+            row.append(city);
+            row.append(address);
+            row.append(level);
+            row.append(del);
+            $(".container").append(row);
+        }
+    },
+    error:function(error){
+        alert("网络故障！");
+    }
+})
+$("#searchBtn").click(function(){
+    var keyWord = $("#search").val();
+    $.ajax({
+        url:"/getUser",
+        type:"post",
+        data:{
+            keyWord:keyWord,
+        },
+        success:function(data){
+            $(".container").empty();
+            var row = $("<div class='row'></div>");
+            var div1 = $('<div class="col-sm-2 title">用户账号</div>');
+            var div2 = $('<div class="col-sm-1 title">省份</div>');
+            var div3 = $('<div class="col-sm-1 title">城市</div>');
+            var div4 = $('<div class="col-sm-4 title">地址</div>');
+            var div5 = $('<div class="col-sm-1 title">等级</div>');
+            
+            row.append(div1);
+            row.append(div2);
+            row.append(div3);
+            row.append(div4);
+            row.append(div5);
+            $(".container").append(row);
+            if(data==""){
+                alert("没有结果");
+            }else{
+                for(var i=0;i<data.length;i++){
+                    var row = $("<div class='row'></div>");
+                    var id = $("<div class='col-sm-2 bg'></div>");
+                    var province = $("<div class='col-sm-1 bg'></div>");
+                    var city = $("<div class='col-sm-1 bg'></div>");
+                    var address = $("<div class='col-sm-4 bg'></div>");
+                    var level = $("<div class='col-sm-1 bg'></div>");
+                    var del = $("<button class='col-sm-1 delBtn'></button>");
+                    del.append("删除用户");
+                    del.attr("id",data[i].userId);
+                    del.click(function(){
+                        var delUserId = $(this).attr("id");
+                        $.ajax({
+                            url:"/delUserId",
+                            type:"post",
+                            data:{
+                                delUserId:delUserId,
+                            },
+                            success:function(data){
+                                alert("删除成功！");
+                            },
+                            error:function(error){
+                                alert("网络故障！");
+                            }
+                        })
+                    })
+                    id.append(data[i].userId);
+                    province.append(data[i].province);
+                    city.append(data[i].city);
+                    address.append(data[i].address);
+                    level.append(data[i].level);
+                    row.append(id);
+                    row.append(province);
+                    row.append(city);
+                    row.append(address);
+                    row.append(level);
+                    row.append(del);
+                    $(".container").append(row);
+                } 
+            }
+        },
+        error:function(error){
+            alert("网络故障！");
+        }
+    })
+})
+</script>
+</html>

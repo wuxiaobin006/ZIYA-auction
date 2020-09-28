@@ -1,0 +1,29 @@
+.container{
+    display:table;
+    height:100%;
+}
+.row{
+    display: table-cell;
+    vertical-align: middle;
+    height: 100vh;
+}
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    text-align:left;
+    margin-right:-4px;
+}
+#loginBtn{
+    background-color: #141414;
+    color:white;
+}
+#registerBtn{
+    border:solid 1px;
+}
+body{
+    background:url(/images/background.jpg) no-repeat;
+    background-size:cover;
+}

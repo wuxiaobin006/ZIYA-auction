@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="/jQuery.js"></script>
+    <script src="/bootstrap.min.js"></script>
+    <script src="/swiper.js"></script>
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
+    <link href="css/user/auction.css" rel="stylesheet">
+    <link href="css/swiper/swiper.css" rel="stylesheet">
+    <title>热拍</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <ul class="row indexList">
+            <li class="col-lg-2 col-sm-2" id="index">
+                <img src="/images/ZIYA.png" width="25px" height="25px">首页
+            </li>
+            <li class="col-lg-2 col-sm-2 indexList_active">
+                <img src="/images/fire.png" width="14px" height="14px">热拍
+            </li>
+            <li class="col-lg-2 col-sm-2" id="vip">
+                <img src="/images/vip.png" width="35px" height="35px">会员
+            </li>
+            <li class="col-lg-2 col-sm-2" id="cart">
+                <img src="/images/shopping.png" width="30px" height="30px">购物车
+            </li>
+            <li class="col-lg-2 col-sm-2" id="record">
+                <img src="/images/record.png" width="25px" height="25px">成交记录
+            </li>
+            <li class="col-lg-2 col-sm-2" id="login">
+                <img src="/images/login.png" width="25px" height="25px">登录
+            </li>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="row row-center" >
+            <div id="commodities" class="col-lg-12 col-sm-12">
+                <img src="" id="sImg" class="col-lg-12" height="490px">
+            </div>
+            <span style="font-size: 25px;">商品:</span><span style="font-size: 25px;" id="sName"></span><span style="font-size: 25px;" id="countdown"></span>
+        </div>
+        <hr>
+        <div class="col-lg-12 col-sm-12">
+            <h3>当前价格：</h3>
+            <h3><input id="nowPrice" type="text" class="col-lg-4 col-sm-12" disabled='disabled'></h3>
+            <h3>元人民币</h3>
+        </div>
+        <div class="col-lg-12 col-sm-12">
+            <h3>以千为单位:</h3>
+            <input type="text" class="col-lg-3 col-sm-12" id="inputPrice" placeholder="加价">
+            <input type="button" class="col-lg-1 col-sm-12" id="plusBtn" value="加价">
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <h3>拍卖品预览</h3>
+        <hr>
+        <div class="col-lg-12 col-sm-12" id="prS">
+            <!-- <div class="col-lg-3 col-sm-6 commodityPage">
+                <div>商品2</div>
+                <div>起拍价：100元</div>
+            </div>
+            <div class="col-lg-3 col-sm-6 commodityPage">商品3</div>
+            <div class="col-lg-3 col-sm-6 commodityPage">商品4</div>
+            <div class="col-lg-3 col-sm-6 commodityPage">商品5</div>
+            <div class="col-lg-3 col-sm-6 commodityPage">商品6</div> -->
+        </div>
+    </div>
+    <script src="/user/auction.js"></script>
+    <script>
+        var username = document.cookie.split("=")[1];
+    </script>
+    <script>
+        var value = window.location.href.split("=")[1];
+        var sImg= document.getElementById("sImg");
+        var nowPrice = document.getElementById("nowPrice");
+        var prS = document.getElementById("prS");
+        var plusBtn = document.getElementById("plusBtn");
+        var inputPrice = document.getElementById("inputPrice");
+        var sName = document.getElementById("sName");
+        var countdown = document.getElementById("countdown");
+        var xhr = new XMLHttpRequest();
+        var shangpin = [];
+        var ws = new WebSocket("ws://localhost:8088/websocket?value="+value);
+        ws.onerror = function () {
+            console.log("error connect close");
+        }
+        ws.onopen=function (event) {
+            console.log("connect success");
+        }
+        ws.onmessage = function (event) {
+            
+            if(!parseInt(event.data)){
+                if(event.data.indexOf("timeout")!=-1){
+                    alert("恭喜用户"+event.data.split(":")[1]+"竞拍成功");
+                    window.location="http://localhost:8088/auction.html?value="+value;
+                }else{
+                    console.log();
+                    countdown.innerText="倒计时:"+event.data.split(":")[1]+"s";
+                }
+            }else{
+                nowPrice.value = parseInt(event.data);
+            }
+            
+        }
+        ws.onclose = function () {
+            console.log("connect close");
+        }
+        window.onbeforeunload = function () {
+            ws.close();
+        }
+        xhr.open("get","/getS?value="+decodeURI(value));
+        xhr.onreadystatechange=function(){
+            if(xhr.readyState==4&&xhr.status==200){
+                console.log(xhr.responseText);
+                shangpin=xhr.responseText.split("?");
+                console.log(shangpin);
+                var one = true;
+                var count =0;
+                for(var i=0;i<shangpin.length;i++){
+                    if(shangpin[i].split(",")[3]=="no"){
+                        count++;
+                    }
+                }
+                console.log(count);
+                if(count==shangpin.length){
+                    var xhr2 = new XMLHttpRequest();
+                    xhr2.open('get','/deleteP?value='+value);
+                    xhr2.onreadystatechange = function(){
+                        if(xhr2.readyState==4&&xhr2.status==200){
+                            window.location = "http://localhost:8088/auctionList.html";
+                        }
+                    }
+                    xhr2.send();
+                }
+                for(var i =0;i<shangpin.length;i++){
+                    if(one){
+                        if(shangpin[i].split(",")[3]=="yes"){
+                            sImg.src = shangpin[i].split(",")[2];
+                            nowPrice.value = shangpin[i].split(",")[1];
+                            sName.innerText= shangpin[i].split(",")[0];
+                            one=false;
+                        }
+                    }else{
+                        var t = shangpin[i].split(",");
+                        var div1 = document.createElement("div");
+                        var div2 = document.createElement("div");
+                        var div3 = document.createElement("div");
+                        div2.innerText=t[0];
+                        div3.innerText="起拍价："+t[1];
+                        div1.className="col-lg-3 col-sm-3 commodityPage";
+                        div1.append(div2);
+                        div1.append(div3);
+                        prS.append(div1);
+                    }      
+                }
+            }
+        }
+        xhr.send();
+        plusBtn.onclick= function(){
+            console.log("test");
+            ws.send(sName.innerText+":"+(parseInt(inputPrice.value)*1000+parseInt(nowPrice.value))+":"+username);
+        }
+    </script>
+</body>
+
+</html>

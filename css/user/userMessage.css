@@ -1,0 +1,82 @@
+.indexList{
+    background-color: #141414;
+    color: #ffffff;
+}
+.indexList li{
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 100;
+    cursor: pointer;
+}
+.indexList li:hover {
+    color:#141414;
+    background-color:white;
+}
+.indexList_active{
+    color:#141414;
+    background-color:white;
+}
+.messageStyle{
+    border: #c4c4c4 solid 1px;
+    height: 32px;
+    width: 300px;
+    border-radius: 3px;
+}
+.title{
+    background-color: white;
+}
+#logout{
+    color:#141414;
+    background-color:white;
+    border: solid #141414 1px;
+}
+#logout:active{
+    background-color: #141414;
+    color: #ffffff;
+}
+#logout:hover{
+    background-color: #141414;
+    color: #ffffff;
+}
+#searchBtn{
+    width:25px;
+    height:25px;
+    border-radius:5%;
+    margin-left:5px;
+    cursor: pointer;
+}
+#searchBtn:active{
+    width:20px;
+    height:20px;
+}
+#searchDiv{
+    -webkit-display:flex;
+    display:flex;
+    -webkit-align-items:center;
+    align-items:center;
+    -webkit-justify-content:center;
+    justify-content:center;
+    height:44px;
+}
+#search{
+    width:100px;
+    height:25px;
+    border:rgb(0, 195, 255) solid 1.5px;
+    border-radius: 50px;
+    color:black;
+}
+#save{
+    border:none;
+    background-color: #141414;
+    color:white;
+}
+#save:hover{
+    background-color: white;
+    color:#141414;
+}
+#save:active{
+    background-color: white;
+    color:#141414;
+}

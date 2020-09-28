@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="/jQuery.js"></script>
+    <script src="/bootstrap.min.js"></script>
+    <script src="/bootstrap.bundle.min.js"></script>
+    <script src="/swiper.js"></script>
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap/bootstrap-grid.css" rel="stylesheet">
+    <link href="css/bootstrap/bootstrap-reboot.css" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
+    <link href="css/user/preview.css" rel="stylesheet">
+    <link href="css/swiper/swiper.css" rel="stylesheet">
+    <title>预展</title>
+</head>
+<body>
+    <div class="container-fluid" >
+        <ul class="row indexList">
+            <li class="col-lg-2 col-sm-2" id="index">
+                <img src="/images/ZIYA.png" width="25px" height="25px">首页
+            </li>
+            <li class="col-lg-2 col-sm-2 indexList_active" id="auction">
+                <img src="/images/fire.png" width="14px" height="14px">热拍
+            </li>
+            <li class="col-lg-2 col-sm-2" id="vip">
+                <img src="/images/vip.png" width="35px" height="35px">会员
+            </li>
+            <li class="col-lg-2 col-sm-2" id="cart">
+                <img src="/images/shopping.png" width="30px" height="30px">购物车
+            </li>
+            <li class="col-lg-2 col-sm-2" id="record">
+                <img src="/images/record.png" width="25px" height="25px">成交记录
+            </li>
+            <li class="col-lg-2 col-sm-2" id="login">
+                <img src="/images/login.png" width="25px" height="25px">登录
+            </li>
+        </ul>
+    </div>
+    <div class="container-fluid">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <ul id="PSL">
+                <!-- <li class=" col-lg-3 col-md-6 col-sm-6">
+                    <div class="record-box">
+                        <img src="images/vip.png" class="record-img"></img>
+                        <div class="col-lg-12 record-box-title">物品1</div>
+                        <div class="col-lg-12 record-box-text">
+                            <p>起拍价:</p>
+                            <p style="color: red;">还未到时间竞拍哦！</p>
+                        </div>
+                    </div>        
+               </li> -->
+            </ul>
+        </div>
+    </div>
+</body>
+<script src="/user/preview.js"></script>
+<script>
+    var value=  decodeURI(window.location.href.split("=")[1].split("&")[0]);
+    var PSL = document.getElementById("PSL");
+    console.log(value);
+    var xhr = new XMLHttpRequest();
+    xhr.open('get','/getS?value='+value);
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState==4&&xhr.status==200){
+            var shangpin = xhr.responseText.split("?");
+            for(var i=0;i<shangpin.length;i++){
+
+                
+                var t = shangpin[i].split(",");
+                var li = document.createElement("li");
+                li.className=" col-lg-3 col-md-6 col-sm-6";
+                var divrb = document.createElement("div");
+                divrb.className="record-box";
+                var img = document.createElement("img");
+                img.src=t[2];
+                img.className="record-img";
+                var div1 = document.createElement("div");
+                div1.className="col-lg-12 record-box-title";
+                div1.innerText=t[0];
+                var div2 = document.createElement("div");
+                div2.className="col-lg-12 record-box-text";
+                var p1=document.createElement("p");
+                p1.innerText="起拍价:"+t[1];
+                var p2 = document.createElement("p");
+                p2.style.color="red";
+                p2.innerText="还未到时间竞拍哦！";
+                div2.append(p1);
+                div2.append(p2);
+                divrb.append(img);
+                divrb.append(div1);
+                divrb.append(div2);
+                li.append(divrb);
+                PSL.append(li);
+            }
+            
+        }
+    }
+    xhr.send();
+</script>
+</html>

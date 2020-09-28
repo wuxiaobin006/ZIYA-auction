@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+    <script src="/jQuery.js"></script>
+    <script src="/bootstrap.min.js"></script>
+    <title>Document</title>
+    <style>
+        .container{
+            display:table;
+            height:100%;
+        }
+
+        .row{
+            display: table-cell;
+            vertical-align: middle;
+        }
+        .row-centered {
+            text-align:center;
+        }
+        .col-centered {
+            display:inline-block;
+            float:none;
+            text-align:left;
+            margin-right:-4px;
+        }
+        body{
+            padding: 200px;
+            background:url(/images/background.jpg) no-repeat;
+            background-size:cover;
+        }
+    </style>
+</head>
+<body>
+        <div class="container">
+                <div class="row row-centered">
+                    <div class="well col-md-6 col-centered">
+                        <h2>添加拍卖</h2>
+                        <div class="input-group input-group-md">
+                            <span class="input-group-addon" id="sizing-addon1">标题</span>
+                            <input type="text" class="form-control" id="title" name="userid" placeholder="请输入标题"/>
+                        </div>
+                        <span>开始时间</span>
+                        <div class="input-group input-group-md">
+                            <span class="input-group-addon">年</span>
+                            <select class="form-control" id="sYear">
+                            </select>
+                            <span class="input-group-addon">月</span>
+                            <select class="form-control" id="sMonth">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                            <span class="input-group-addon" >日</span>
+                            <select class="form-control" id="sDay"></select>
+                        </div>
+                        <div class="input-group input-group-md">
+                            <span class="input-group-addon">时</span>
+                            <select class="form-control" id="sHour">
+                            </select>
+                            <span class="input-group-addon">分</span>
+                            <select class="form-control" id="sMinute"></select>
+                            <span class="input-group-addon" >秒</span>
+                            <select class="form-control" id="sSecond"></select>
+                        </div>
+                        <span>结束时间</span>
+                            <div class="input-group input-group-md">
+                                <span class="input-group-addon">年</span>
+                                <select class="form-control" id="eYear">
+                                </select>
+                                <span class="input-group-addon">月</span>
+                                <select class="form-control" id="eMonth">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                </select>
+                                <span class="input-group-addon" >日</span>
+                                <select class="form-control" id="eDay"></select>
+                            </div>
+                            <div class="input-group input-group-md">
+                                <span class="input-group-addon">时</span>
+                                <select class="form-control" id="eHour">
+                                </select>
+                                <span class="input-group-addon">分</span>
+                                <select class="form-control" id="eMinute"></select>
+                                <span class="input-group-addon" >秒</span>
+                                <select class="form-control" id="eSecond"></select>
+                            </div>
+                        <br/>
+                        <button onclick="addP()" type="submit" class="btn btn-success btn-block">添加</button>
+                    </div>
+                </div>
+            </div>
+    <script>
+            var sYear = document.getElementById("sYear");
+            var sMonth = document.getElementById("sMonth");
+            var sDay = document.getElementById("sDay");
+            var sHour = document.getElementById("sHour");
+            var sMinute = document.getElementById("sMinute");
+            var sSecond = document.getElementById("sSecond");
+            var eYear = document.getElementById("eYear");
+            var eMonth = document.getElementById("eMonth");
+            var eDay = document.getElementById("eDay");
+            var eHour = document.getElementById("eHour");
+            var eMinute = document.getElementById("eMinute");
+            var eSecond = document.getElementById("eSecond");
+            var date = new Date();
+            for(var i =0;i<2;i++){
+                var option = document.createElement("option");
+                option.value= date.getFullYear()+i;
+                option.innerText=date.getFullYear()+i;
+                var option2 = document.createElement("option");
+                option2.value= date.getFullYear()+i;
+                option2.innerText=date.getFullYear()+i;
+                sYear.append(option);
+                eYear.append(option2);
+            }
+            for(var i =0;i<24;i++){
+                var option = document.createElement("option");
+                option.value= i;
+                option.innerText=i;
+                var option2 = document.createElement("option");
+                option2.value= i;
+                option2.innerText=i;
+                sHour.append(option);
+                eHour.append(option2);
+            }
+            for(var i =0;i<60;i++){
+                var option = document.createElement("option");
+                option.value= i;
+                option.innerText=i;
+                var option2 = document.createElement("option");
+                option2.value= i;
+                option2.innerText=i;
+                sMinute.append(option);
+                sSecond.append(option2);
+                var option3 = document.createElement("option");
+                option3.value= i;
+                option3.innerText=i;
+                var option4 = document.createElement("option");
+                option4.value= i;
+                option4.innerText=i;
+                eMinute.append(option3);
+                eSecond.append(option4);
+            }
+            eYear.onchange = function(){
+                edayOption();
+            }
+            eMonth.onchange=function(){
+                edayOption();
+            }
+            sYear.onchange=function(){
+                sdayOption();
+            }
+            sMonth.onchange=function () {
+                sdayOption();
+            }
+            function edayOption() {
+                eDay.options.length=0;
+                if(parseInt(eMonth.value)==1||parseInt(eMonth.value)==3||parseInt(eMonth.value)==5||parseInt(eMonth.value)==7||parseInt(eMonth.value)==8
+                    ||parseInt(eMonth.value)==10||parseInt(eMonth.value)==12){
+                    for(var i =1;i<=31;i++){
+                        var option = document.createElement("option");
+                        option.value= i;
+                        option.innerText=i;
+                        eDay.append(option);
+                    }
+                }else{
+    
+                    if(parseInt(eMonth.value)==2){
+                        var y = parseInt(eYear.value);
+                        console.log(y);
+                        var cond1 = y % 4 == 0;
+                        var cond2 = y % 100 != 0;
+                        var cond3 = y % 400 ==0;
+                        var cond = cond1 && cond2 || cond3;
+                        if(cond) {
+                            for(var i =1;i<=29;i++){
+                                var option = document.createElement("option");
+                                option.value= i;
+                                option.innerText=i;
+                                eDay.append(option);
+                            }
+                        } else {
+                            for(var i =1;i<=28;i++){
+                                var option = document.createElement("option");
+                                option.value= i;
+                                option.innerText=i;
+                                eDay.append(option);
+                            }
+                        }
+                    }else{
+                        for(var i =1;i<=30;i++){
+                            var option = document.createElement("option");
+                            option.value= i;
+                            option.innerText=i;
+                            eDay.append(option);
+                        }
+                    }
+                }
+            }
+            function sdayOption() {
+                console.log(parseInt(sMonth.value));
+                sDay.options.length=0;
+                if(parseInt(sMonth.value)==1||parseInt(sMonth.value)==3||parseInt(sMonth.value)==5||parseInt(sMonth.value)==7||parseInt(sMonth.value)==8
+                    ||parseInt(sMonth.value)==10||parseInt(sMonth.value)==12){
+                    for(var i =1;i<=31;i++){
+                        var option = document.createElement("option");
+                        option.value= i;
+                        option.innerText=i;
+                        sDay.append(option);
+                    }
+                }else{
+    
+                    if(parseInt(sMonth.value)==2){
+                        var y = parseInt(sYear.value);
+                        console.log(y);
+                        var cond1 = y % 4 == 0;
+                        var cond2 = y % 100 != 0;
+                        var cond3 = y % 400 ==0;
+                        var cond = cond1 && cond2 || cond3;
+                        if(cond) {
+                            for(var i =1;i<=29;i++){
+                                var option = document.createElement("option");
+                                option.value= i;
+                                option.innerText=i;
+                                sDay.append(option);
+                            }
+                        } else {
+                            for(var i =1;i<=28;i++){
+                                var option = document.createElement("option");
+                                option.value= i;
+                                option.innerText=i;
+                                sDay.append(option);
+                            }
+                        }
+                    }else{
+                        for(var i =1;i<=30;i++){
+                            var option = document.createElement("option");
+                            option.value= i;
+                            option.innerText=i;
+                            sDay.append(option);
+                        }
+                    }
+                }
+            }
+            function addP() {
+                var start = sYear.value+"-"+sMonth.value+"-"+sDay.value+" "+sHour.value+":"+sMinute.value+":"+sSecond.value;
+                var end = eYear.value+"-"+eMonth.value+"-"+eDay.value+" "+eHour.value+":"+eMinute.value+":"+eSecond.value;
+                var sdate = new Date(start);
+                var edate = new Date(end);
+                var ndate = new Date();
+                var title = document.getElementById("title");
+                if(sdate.getTime()<ndate.getTime()){
+                    alert("开始时间不合法");
+                }
+                else if(edate.getTime()<sdate.getTime()){
+                    alert("结束时间不合法");
+                }else{
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('get',"addP?"+"title="+title.value+"&start="+start+"&end="+end);
+                    xhr.onreadystatechange = function () {
+                        if(xhr.readyState==4&&xhr.status==200){
+                            window.location="manager.html";
+                        }
+                    }
+                    xhr.send();
+                }
+            }
+        </script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css">
+    <script src="/jQuery.js"></script>
+    <script src="/bootstrap.min.js"></script>
+    <title>Document</title>
+    <style>
+        .pai{
+            border: 1px #ccc solid;
+            font-size: 20px;
+        }
+        .time{
+            border: 1px #ccc solid;
+            border-left: none;
+            font-size: 20px; 
+        }
+        body{
+            background:url(/images/background.jpg) no-repeat;
+            background-size:cover;
+        }
+        .bg{
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid" style="font-weight:bolder;">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">管理</a>
+            </div>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="addP.html">添加拍卖</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            添加商品
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu" id="menu">
+                            
+                        </ul>
+                    </li>
+                    <li><a href="userManage.html">用户中心</a></li>
+                    <li><a href="recordManage.html">成交记录</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container" id="pShow">
+        <div class="row">
+            <div class="col-sm-6">标题</div>
+            <div class="col-sm-3">开始时间</div>
+            <div class="col-sm-3">结束时间</div>
+        </div>
+           
+    </div>
+    <script>
+        var xhr = new XMLHttpRequest();
+        var pShow = document.getElementById("pShow");
+        var menu = document.getElementById("menu");
+        xhr.open('get','/getP');
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState==4&&xhr.status==200){
+                var result = xhr.responseText.split("/");
+                if(result!=""){
+                    for(var i =0;i<result.length;i++){
+                        var t = result[i].split(",");
+                        var row = document.createElement("div");
+                        row.className="row";
+                        var div1 = document.createElement("div");
+                        div1.className="col-sm-6 pai bg";
+                        div1.innerText=t[0];
+                        var div2 = document.createElement("div");
+                        div2.className="col-sm-3 time bg";
+                        div2.innerText=t[1];
+                        var div3 = document.createElement("div");
+                        div3.className="col-sm-3 time bg";
+                        div3.innerText=t[2];
+                        row.append(div1);
+                        row.append(div2);
+                        row.append(div3);
+                        pShow.append(row);
+                        var li = document.createElement("li");
+                        var a = document.createElement("a");
+                        a.innerText=t[0];
+                        a.href="addS.html?value="+t[0];
+                        li.append(a);
+                        menu.append(li);
+                    }
+                }
+                
+            }
+        }
+        xhr.send();
+    </script>
+</body>
+</html>

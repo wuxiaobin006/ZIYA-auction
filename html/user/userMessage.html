@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>个人信息</title>
+    <script src="/jQuery.js"></script>
+    <script src="/bootstrap.min.js"></script>
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
+    <link href="css/user/userMessage.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container-fluid">
+        <ul class="row indexList">
+            <li class="col-lg-2 col-sm-2" id="index">
+                <img src="/images/ZIYA.png" width="25px" height="25px">首页
+            </li>
+            <li class="col-lg-2 col-sm-2" id="auction">
+                <img src="/images/fire.png" width="14px" height="14px">热拍
+            </li>
+            <li class="col-lg-2 col-sm-2" id="vip">
+                <img src="/images/vip.png" width="35px" height="35px">会员
+            </li>
+            <li class="col-lg-2 col-sm-2" id="cart">
+                <img src="/images/shopping.png" width="30px" height="30px">购物车
+            </li>
+            <li class="col-lg-2 col-sm-2" id="record">
+                <img src="/images/record.png" width="25px" height="25px">成交记录
+            </li>
+            <li class="col-lg-2 col-sm-2 indexList_active" id="login">
+                <img src="/images/login.png" width="25px" height="25px">个人中心
+            </li>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="col-lg-12 col-sm-12 col-md-12 title">
+            <h1><img src="/images/ZIYA.png" width="50px" height="50px">账户信息</h1>
+        </div>
+        <hr>
+        <div>用户ID：<input type="text" class="messageStyle" id="userId" placeholder="" disabled="disabled"></div>
+        <br>
+        <div>贵宾等级：<input type="text" class="messageStyle" id="userLevel" placeholder="" disabled="disabled"></div>
+        <br>
+        <div>
+            <div style="font-size:20px;">地址：</div>
+            <select class="messageStyle" id="province">
+                <option>广东</option>
+            </select>
+            <div style="font-size:20px;">省</div>
+            <select class=" messageStyle" id="city"></select>
+            
+            <div style="font-size:20px;">市</div>
+            <input type="text" class=" messageStyle" id="userAddress" placeholder="设置地址">
+            <input type="button" id="save" value="保存地址">
+        </div>
+        <br>
+        <hr>
+        <input type="button" id="logout" value="退出登录">
+    </div>
+</body>
+<script src="/user/userMessage.js"></script>
+</html>

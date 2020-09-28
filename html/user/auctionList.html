@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="/jQuery.js"></script>
+    <script src="/bootstrap.min.js"></script>
+    <script src="/swiper.js"></script>
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
+    <link href="css/user/auctionList.css" rel="stylesheet">
+    <link href="css/swiper/swiper.css" rel="stylesheet">
+    <title>热拍</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <ul class="row indexList">
+            <li class="col-lg-2 col-sm-2" id="index">
+                <img src="/images/ZIYA.png" width="25px" height="25px">首页
+            </li>
+            <li class="col-lg-2 col-sm-2 indexList_active">
+                <img src="/images/fire.png" width="14px" height="14px">热拍
+            </li>
+            <li class="col-lg-2 col-sm-2" id="vip">
+                <img src="/images/vip.png" width="35px" height="35px">会员
+            </li>
+            <li class="col-lg-2 col-sm-2" id="cart">
+                <img src="/images/shopping.png" width="30px" height="30px">购物车
+            </li>
+            <li class="col-lg-2 col-sm-2" id="record">
+                <img src="/images/record.png" width="25px" height="25px">成交记录
+            </li>
+            <li class="col-lg-2 col-sm-2" id="login">
+                <img src="/images/login.png" width="25px" height="25px" id="login">登录
+            </li>
+        </ul>
+    </div>
+    <div class="container" id="aList">
+        <!-- <div class="col-lg-12 col-sm-2 auctionPage" id="auction">
+            
+        </div>
+        <br>
+        <div class="col-lg-12 col-sm-2 auctionPage">
+            <h1>拍卖会2</h1>
+        </div> -->
+    </div>
+    <script>
+        var aList = document.getElementById("aList");
+        var xhr = new XMLHttpRequest();
+        xhr.open('get','/getP');
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState==4&&xhr.status==200){
+                console.log(xhr.responseText=="");
+                if(xhr.responseText!=""){
+                    var p = xhr.responseText.split("/");
+                    var pNumber =  p.length;
+                    for(var i=0;i<pNumber;i++){
+                        (function(i){
+                            var div = document.createElement("div");
+                            div.className="col-lg-12 col-sm-12 auctionPage";
+                            console.log(p[i]);
+                            div.onclick =function(){
+                                var ndate = new Date();
+                                var sdate = new Date(p[i].split(",")[1]);
+                                if(ndate.getTime()<sdate.getTime()){
+                                    alert("拍卖还没开始哦！");
+                                    window.location.href="/preview.html?value="+p[i].split(",")[0];
+                                }
+                                else{
+                                    window.location.href="auction.html?value="+p[i].split(",")[0];
+                                }
+                                
+                            }
+                            var h4 = document.createElement("h4");
+                            h4.innerText=p[i].split(",")[0];
+                            div.append(h4);
+                            aList.append(div);
+                        })(i);
+                    }
+                }
+                
+            }
+        }
+        xhr.send();
+    </script>
+</body>
+
+<script src="/user/auctionList.js">
+</script>
+</html>

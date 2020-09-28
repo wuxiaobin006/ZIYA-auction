@@ -1,0 +1,43 @@
+.container{
+    display:table;
+    height:100%;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    text-align:left;
+    margin-right:-4px;
+}
+.row{
+    display: table-cell;
+    vertical-align: middle;
+    height: 100vh;
+}
+.row-centered {
+    text-align:center;
+}
+.messageStyle{
+    border: #c4c4c4 solid 1px;
+    height: 32px;
+    width: 100px;
+    border-radius: 3px;
+}
+.addressDetail{
+    border: #c4c4c4 solid 1px;
+    height: 32px;
+    width: 120px;
+    border-radius: 3px;
+}
+#registerBtn{
+    background-color: #141414;
+    color:white;
+}
+body{
+    background:url(/images/background.jpg) no-repeat;
+    background-size:cover;
+}
+.address{
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+}

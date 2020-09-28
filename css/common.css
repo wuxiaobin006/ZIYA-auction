@@ -1,0 +1,13 @@
+ul{
+    list-style: none;
+    padding-left:10%;
+    padding-right:10%;
+}
+a{
+    text-decoration:none;
+    outline: none;
+    color: inherit;
+}
+body{
+    padding-bottom: 50px;
+}

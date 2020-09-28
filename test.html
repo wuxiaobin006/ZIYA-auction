@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    test
+    <script>
+        var ws = new WebSocket("ws://localhost:8088/websocket?value=testtest");
+        ws.onerror = function () {
+            console.log("error connect close");
+        }
+        ws.onopen=function (event) {
+            ws.send("test**************");
+            console.log("connect success");
+        }
+        ws.onmessage = function (event) {            
+            console.log(event.data); 
+        }
+        ws.onclose = function () {
+            console.log("connect close");
+        }
+        window.onbeforeunload = function () {
+            ws.close();
+        }    
+    </script>
+</body>
+</html>

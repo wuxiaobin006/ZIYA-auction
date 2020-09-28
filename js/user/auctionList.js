@@ -1,0 +1,88 @@
+$(".indexList").children('li').click(function(){
+    $(this).siblings().removeClass("indexList_active");
+    $(this).addClass("indexList_active");
+});
+$("#login").click(function(){
+    $.ajax({
+        url:"/tryLogin",
+        type:"post",
+        success:function(data){
+            if(data=="toLogin"){
+                window.location.href="/login.html";
+            }else{
+                window.location.href="/userMessage.html";
+            }
+        },
+        error:function(error){
+            alert("网络故障，请稍后再试。");
+        }
+    })
+})
+$("#index").click(function(){
+    window.location.href="/index.html";
+})
+$("#auction").click(function(){
+    window.location.href="auction.html";
+})
+$("#vip").click(function(){
+    window.location.href="/vip.html";
+})
+$("#cart").click(function(){
+    $.ajax({
+        url:"tryLogin",
+        type:"post",
+        success:function(data){
+            if(data=='logined')
+            window.location.href="/cart.html";
+            else{
+                alert("登录后才能查看购物车哦！");
+                window.location.href="/login.html";
+            }
+        },
+        error:function(error){
+            alert("网络故障！");
+        }
+    })   
+})
+$("#record").click(function(){
+    window.location.href="/record.html";
+})
+
+
+$.ajax({
+    url:"/getAuction",
+    type:"post",
+    success:function(data){
+        for(var i=0;i<data.length;i++){
+            var div = $('<div class="col-lg-12 col-sm-12 auctionPage"></div>');
+            div.attr("id",data[i].title);
+            div.append("<h1>"+data[i].title+"</h1>");
+            div.append("<h3>"+data[i].start+"——"+data[i].end+"</h3>")
+            div.append("<hr>");
+            div.append("<img src='/images/true.jpg' width='100%'>")
+            $("#auctionList").append(div);
+            $("#auctionList").append("<br>");
+        }
+        for(var i=0;i<data.length;i++){
+            $("#"+data[i].title).click(function(){
+                let title = $(this).attr("id");
+                $.ajax({
+                    url:"/toAuction",
+                    type:"post",
+                    data:{
+                        title:title,
+                    },
+                    success:function(data){
+                        window.location.href="/auction.html";
+                    },
+                    error:function(error){
+                        alert("网络故障！");
+                    }
+                })
+            })
+        }
+    },
+    error:function(error){
+        alert("网络故障！");
+    }
+})

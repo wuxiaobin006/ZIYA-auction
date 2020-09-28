@@ -1,0 +1,5 @@
+npm install express
+npm install mysql
+npm install --save svg-captcha
+npm install express-ws
+npm install multer

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="/jQuery.js"></script>
+    <script src="/bootstrap.min.js"></script>
+    <script src="/swiper.js"></script>
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
+    <link href="css/user/vip.css" rel="stylesheet">
+    <title>VIP会员</title>
+</head>
+<script>
+    $(document).ready(function(){
+        var price1 = 0;
+        var price2 = 0;
+        var price3 = 0;
+        var price4 = 0;
+        var price5 = 0;
+        var price6 = 0;
+        $(".vip-month").click(function(){         
+            $(this).toggleClass("vip-month-on"); 
+            $(".em1").toggleClass("vip-em");
+            $(".em2").removeClass("vip-em");
+            $(".em3").removeClass("vip-em");
+            $(".em4").removeClass("vip-em");
+            $(".em5").removeClass("vip-em");
+            $(".em6").removeClass("vip-em");
+            $(".vip-year").removeClass("vip-year-on");          
+            $(".vip-life").removeClass("vip-life-on");       
+            $(".vip-point1").removeClass("vip-point1-on");
+            $(".vip-point2").removeClass("vip-point2-on");
+            $(".vip-point3").removeClass("vip-point3-on");
+            if($("li").is(".vip-month-on")){
+                var getId1 = document.getElementById('month');
+                price1 = getId1.getAttribute("data-price");
+                price1 = parseFloat(price1);
+            }
+            else{
+                price1 = 0;
+            }
+            $("#VIPprice").val(price1*1+".00") ;
+        });
+        $(".vip-year").click(function(){
+            $(this).toggleClass("vip-year-on");
+            $(".em2").toggleClass("vip-em");
+            $(".em1").removeClass("vip-em");
+            $(".em3").removeClass("vip-em");
+            $(".em4").removeClass("vip-em");
+            $(".em5").removeClass("vip-em");
+            $(".em6").removeClass("vip-em");
+            $(".vip-month").removeClass("vip-month-on");
+            $(".vip-life").removeClass("vip-life-on");       
+            $(".vip-point1").removeClass("vip-point1-on");
+            $(".vip-point2").removeClass("vip-point2-on");
+            $(".vip-point3").removeClass("vip-point3-on");
+            if($("li").is(".vip-year-on")){
+                var getId2 = document.getElementById('year');
+                price2 = getId2.getAttribute("data-price");
+                price2 = parseInt(price2);
+            }
+            else{
+                price2 = 0;
+            }
+            $("#VIPprice").val(price2*1+".00") ;
+        })
+        $(".vip-life").click(function(){
+            $(this).toggleClass("vip-life-on");
+            $(".em3").toggleClass("vip-em");
+            $(".em1").removeClass("vip-em");
+            $(".em2").removeClass("vip-em");
+            $(".em4").removeClass("vip-em");
+            $(".em5").removeClass("vip-em");
+            $(".em6").removeClass("vip-em");
+            $(".vip-year").removeClass("vip-year-on");
+            $(".vip-month").removeClass("vip-month-on");       
+            $(".vip-point1").removeClass("vip-point1-on");
+            $(".vip-point2").removeClass("vip-point2-on");
+            $(".vip-point3").removeClass("vip-point3-on");
+            if($("li").is(".vip-life-on")){
+                var getId3 = document.getElementById('life');
+                price3 = getId3.getAttribute("data-price");
+                price3 = parseInt(price3);
+            }
+            else{
+                price3 = 0;
+            }
+            $("#VIPprice").val(price3*1+".00") ;
+        })
+        $(".vip-point1").click(function(){
+            $(this).toggleClass("vip-point1-on");
+            $(".em4").toggleClass("vip-em");
+            $(".em1").removeClass("vip-em");
+            $(".em2").removeClass("vip-em");
+            $(".em3").removeClass("vip-em");
+            $(".em5").removeClass("vip-em");
+            $(".em6").removeClass("vip-em");
+            $(".vip-month").removeClass("vip-month-on");
+            $(".vip-year").removeClass("vip-year-on");
+            $(".vip-life").removeClass("vip-life-on");       
+            $(".vip-point2").removeClass("vip-point2-on");
+            $(".vip-point3").removeClass("vip-point3-on");
+            if($("li").is(".vip-point1-on")){
+                var getId4 = document.getElementById('point1');
+                price4 = getId4.getAttribute("data-price");
+                price4 = parseInt(price4);
+            }
+            else{
+                price4 = 0;
+            }
+            $("#VIPprice").val(price4*1+".00") ;
+        })
+        $(".vip-point2").click(function(){
+            $(this).toggleClass("vip-point2-on");
+            $(".em5").toggleClass("vip-em");
+            $(".em1").removeClass("vip-em");
+            $(".em2").removeClass("vip-em");
+            $(".em3").removeClass("vip-em");
+            $(".em4").removeClass("vip-em");
+            $(".em6").removeClass("vip-em");
+            $(".vip-month").removeClass("vip-month-on");
+            $(".vip-year").removeClass("vip-year-on");
+            $(".vip-life").removeClass("vip-life-on");       
+            $(".vip-point1").removeClass("vip-point1-on");
+            $(".vip-point3").removeClass("vip-point3-on");
+            if($("li").is(".vip-point2-on")){
+                var getId5 = document.getElementById('point2');
+                price5 = getId5.getAttribute("data-price");
+                price5 = parseInt(price5);
+            }
+            else{
+                price5 = 0;
+            }
+            $("#VIPprice").val(price5*1+".00") ;
+        })
+        $(".vip-point3").click(function(){
+            $(this).toggleClass("vip-point3-on");
+            $(".em6").toggleClass("vip-em");
+            $(".em1").removeClass("vip-em");
+            $(".em2").removeClass("vip-em");
+            $(".em3").removeClass("vip-em");
+            $(".em4").removeClass("vip-em");
+            $(".em5").removeClass("vip-em");
+            $(".vip-month").removeClass("vip-month-on");
+            $(".vip-year").removeClass("vip-year-on");
+            $(".vip-life").removeClass("vip-life-on");       
+            $(".vip-point1").removeClass("vip-point1-on");
+            $(".vip-point2").removeClass("vip-point2-on");
+            if($("li").is(".vip-point3-on")){
+                var getId6 = document.getElementById('point3');
+                price6 = getId6.getAttribute("data-price");
+                price6 = parseInt(price6);
+            }
+            else{
+                price6 = 0;
+            }
+            $("#VIPprice").val(price6*1+".00") ;
+        })  
+        $(".vip-wx").click(function(){
+            $(this).toggleClass("vip-wx-on");
+            $(".vip-zfb").removeClass("vip-zfb-on");
+        })
+        $(".vip-zfb").click(function(){
+            $(this).toggleClass("vip-zfb-on");
+            $(".vip-wx").removeClass("vip-wx-on");
+        })
+        $("#pay").click(function(){
+            var value = $("#VIPprice").val();
+            
+            $.ajax({
+                url:"tryLogin",
+                type:"post",
+                success:function(data){
+                    if(data=='logined'){
+                        $.ajax({
+                            url:"/vipChange",
+                            type:"post",
+                            data:{
+                                value:value,
+                            },
+                            success:function(data){
+                                alert("支付成功！");
+                            },
+                            error:function(error){
+                                alert("网络故障！");
+                            }
+                        })
+                    }
+                    
+                    else{
+                        alert("登录后才能充值哦！");
+                        window.location.href="/login.html";
+                    }
+                },
+                error:function(error){
+                    alert("网络故障！");
+                }
+            }) 
+        })
+    });
+</script>
+<body>
+    <div class="container-fluid">
+        <ul class="row indexList">
+            <li class="col-lg-2 col-sm-2 hidden-sm" id="index">
+                <img src="/images/ZIYA.png" width="25px" height="25px">首页
+            </li>
+            <li class="col-lg-2 col-sm-2" id="auction">
+                <img src="/images/fire.png" width="14px" height="14px">热拍
+            </li>
+            <li class="col-lg-2 col-sm-2 indexList_active" id="vip">
+                <img src="/images/vip.png" width="35px" height="35px">会员
+            </li>
+            <li class="col-lg-2 col-sm-2" id="cart">
+                <img src="/images/shopping.png" width="35px" height="30px">购物车
+            </li>
+            <li class="col-lg-2 col-sm-2" id="record">
+                <img src="/images/record.png" width="25px" height="25px">成交记录
+            </li>
+            <li class="col-lg-2 col-sm-2" id="login">
+                <img src="/images/login.png" width="25px" height="25px">登录
+            </li>
+        </ul>
+    </div>
+    <div class="container-fluid vip-title">
+        会员充值中心
+    </div>
+    <div class="container-fluid vip-content">
+        <div class="vip-grade col-lg-12 col-md-12 col-sm-12">
+            <ul>
+                <li class="vip-month col-lg-4 col-md-6 col-sm-6" id="month" data-price="29000">
+                    <dl> 
+                        <dt>
+                            <span><b>铂金会员</b></span>
+                            <span>
+                                <b><strong>2.9万元</strong>/终身</b>
+                                <i>原价：4.9万元</i>
+                                <ins>限时6折优惠</ins>
+                            </span>     
+                        </dt>
+                        <dd><b>·</b><i> 会员有效期：终身有效</i></dd>
+                        <dd><b>·</b><i style=" color: red;"> 购物享8.5折优惠</i></dd>
+                        <dd><b>·</b><i> </i></dd>
+                        <div class="em1"><img src="/images/vip-month-on.png"></div>
+                    </dl>                     
+                </li>
+                <li class="vip-year col-lg-4 col-md-6 col-sm-6" id="year" data-price="99000">
+                    <dl>
+                        <dt>
+                            <span><b>钻石会员</b></span>
+                            <span>
+                                <b><strong>9.9万元</strong>/终身</b>
+                                <i>原价：16.9万元</i>
+                                <ins>限时6折优惠</ins>
+                                </span>    
+                        </dt>
+                        <dd><b>·</b><i> 会员有效期：终身有效</i></dd>
+                        <dd><b>·</b><i style=" color: red;"> 购物享8.0折优惠</i></dd>
+                        <dd><b>·</b><i> </i></dd>
+                        <div class="em2"><img src="/images/vip-year-on.png"></div>
+                    </dl>     
+                </li>
+                <li class="vip-life col-lg-4 col-md-6 col-sm-6" id="life" data-price="299000">
+                    <dl>
+                        <dt>
+                            <span><b>白金会员</b></span>
+                            <span>
+                                <b><strong>29.9万元</strong>/终身</b>
+                                <i>原价：59.9万元</i>
+                                <ins>限时5折优惠</ins>
+                            </span>
+                        </dt>
+                        <dd><b>·</b><i > 会员有效期：终身有效</i></dd>
+                        <dd><b>·</b><i style=" color: red;"> 购物享7.5折优惠</i></dd>
+                        <dd><b>·</b><i style=" color: red;"> </i></dd>
+                        <div class="em3"><img src="/images/vip-life-on.png"></div>
+                    </dl>           
+                </li>
+            
+                <li class="vip-point1 col-lg-4 col-md-6 col-sm-6" id="point1" data-price="10000">
+                    <dl> 
+                        <dt>
+                            <span><b>青铜会员</b></span>
+                            <span>
+                                <b><strong>1万元</strong>/终身</b>
+                                <ins>立即充值</ins>
+                            </span>         
+                        </dt>
+                        <dd><b>·</b><i> 会员有效期：终身有效</i></dd>
+                        <dd><b>·</b><i style=" color: red;"> 购物享9.9折优惠</i style=" color: red;"></dd>
+                        <div class="em4"><img src="/images/vip-point-on.png"></div>
+                    </dl>                      
+                </li>
+                <li class="vip-point2 col-lg-4 col-md-6 col-sm-6" id="point2" data-price="15000">
+                    <dl> 
+                        <dt>
+                            <span><b>白银会员</b></span>
+                            <span>
+                                <b><strong>1.5万元</strong>/终身</b>
+                                <ins>立即充值</ins>
+                            </span>         
+                        </dt>
+                        <dd><b>·</b><i> 会员有效期：终身有效</i></dd>
+                        <dd><b>·</b><i style=" color: red;"> 购物享9.5折优惠</i style=" color: red;"></dd>
+                        <div class="em5"><img src="/images/vip-point-on.png"></div>
+                    </dl> 
+                </li>
+                <li class="vip-point3 col-lg-4 col-md-6 col-sm-6" id="point3" data-price="19000">
+                    <dl> 
+                        <dt>
+                            <span><b>黄金会员</b></span>
+                            <span>
+                                <b><strong>1.9万元</strong>/终身</b>
+                                <ins>立即充值</ins>
+                            </span>         
+                        </dt>
+                        <dd><b>·</b><i> 会员有效期：终身有效</i></dd>
+                        <dd><b>·</b><i style=" color: red;"> 购物享9.0折优惠</i style=" color: red;"></dd>
+                        <div class="em6"><img src="/images/vip-point-on.png"></div>
+                    </dl> 
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid vip-price">
+        <div class="col-lg-12 col-md-6 col-sm-12">
+            <span>
+                应付金额：
+                <input type="text" id="VIPprice" disabled='disabled'>
+            </span>
+        </div>
+    </div>
+    <div class="container-fluid vip-btn">
+        <div class="col-lg-3 col-md-12 col-sm-12"></div>
+        <div class="vip-wx col-lg-3 col-md-12 col-sm-12 vip-wx-on">微信支付</div>
+        <div class="vip-zfb col-lg-3 col-md-12 col-sm-12">支付宝支付</div>
+        <div class="col-lg-3 col-md-12 col-sm-12"></div>
+    </div>
+    <div class="container-fluid vip-pay">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <button id="pay">确认支付</button>
+        </div>
+    </div>
+</body>
+<script src="/user/vip.js"></script>
+</html>

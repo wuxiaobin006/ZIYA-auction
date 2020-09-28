@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>欢迎登录子牙账号</title>
+    <script src="/jQuery.js"></script>
+    <script src="/bootstrap.min.js"></script>
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
+    <link href="css/user/login.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="row row-centered">
+            <div class="well col-md-6 col-centered">
+                <h1><img src="/images/ZIYA.png" width="50px" height="50px">子牙钓鱼网</h1>
+                <div class="input-group input-group-md">
+                    <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" id="userid" name="userid" placeholder="请输入用户ID"/>
+                </div>
+                <br>
+                <div class="input-group input-group-md">
+                    <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码"/>
+                </div>
+                <br/>
+                <button type="button" class="btn btn-block" id="loginBtn">登录</button>
+                <button type="button" class="btn btn-block" id="registerBtn">注册</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/user/login.js"></script>
+</html>
