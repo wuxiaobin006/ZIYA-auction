@@ -25,7 +25,7 @@ node userServer.js
 > http://localhost:8088/index.html
 
 ### mysql数据库相关
-#### 数据库配置见"database.js"文件
-#### 数据库表在/mysql中
+#### 数据库配置见"/js/database.js"文件
+#### 数据库表在"/mysql"中
 
 
