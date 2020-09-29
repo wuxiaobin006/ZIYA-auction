@@ -15,7 +15,6 @@
 ```
 npm install
 ```
-> http://localhost:8088/index.html
 
 #### 主要依赖见"安装命令.txt"文件
 
@@ -23,6 +22,8 @@ npm install
 ```
 node userServer.js
 ```
+首页：> http://localhost:8088/index.html
+
 ### mysql数据库相关
 #### 数据库配置见"database.js"文件
 #### 数据库表在/mysql中
