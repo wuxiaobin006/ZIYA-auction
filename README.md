@@ -15,6 +15,8 @@
 ```
 npm install
 ```
+> http://localhost:8088/index.html
+
 #### 主要依赖见"安装命令.txt"文件
 
 ### 项目本地运行
