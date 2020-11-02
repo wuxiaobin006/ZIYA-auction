@@ -5,7 +5,7 @@
 本项目为子牙(ZIYA)拍卖网用户端和管理员端，前端html,css,jquery,bootstrap,swiper;后台node,mysql
 
 ## 项目相关库链接
-### bootstrap：Web 前端 UI 框架 🎉
+### bootstrap：Web 前端框架 🎉
 > https://getbootstrap.com/
 ### swiper：移动端网页触摸内容滑动js插件 🎐
 > https://www.swiper.com.cn/
