@@ -2,7 +2,7 @@
 
 
 ## 项目简介
-本项目名为子牙(ZIYA)拍卖网，前端html,css,jquery,bootstrap,swiper;后台node,mysql
+本项目名为子牙(ZIYA)拍卖网，前端jquery;后台node,mysql
 
 ## 项目相关库链接
 ### bootstrap：Web 前端 UI 框架 🎉
