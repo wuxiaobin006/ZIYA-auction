@@ -1,0 +1,32 @@
+{
+  "name": "ziya-auction",
+  "version": "1.0.0",
+  "description": "本项目名为子牙(ZIYA)拍卖网，前端jquery;后台node,mysql",
+  "main": "userServer.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "bootstrap": "^3.4.1",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "express-ws": "^4.0.0",
+    "multer": "^1.4.2",
+    "nodejs-websocket": "^1.7.2",
+    "mysql": "^2.18.1",
+    "svg-captcha": "^1.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wuxiaobin006/ZIYA-auction.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wuxiaobin006/ZIYA-auction/issues"
+  },
+  "homepage": "https://github.com/wuxiaobin006/ZIYA-auction#readme"
+}
